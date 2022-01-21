@@ -8,17 +8,21 @@ function checkPassword(password, ok, fail) {
 	else fail();
   }
   
-  const user = {
-	name: "Tim",
+ const user = {
+	firstname: "Tim",
   
 	loginOk() {
-	  console.log(`${this.name} logged in`);
+		console.log(`${this.firstname} logged in`);
 	},
   
 	loginFail() {
-	  console.log(`${this.name} failed to log in`);
-	},
-  
+		console.log(`${this.firstname} failed to log in`);
+	}
+
   };
   
-  checkPassword("password", user.loginOk, user.loginFail);
+  let loginOk = user.loginOk.bind(user);
+  let loginFail = user.loginFail.bind(user);
+
+  checkPassword("password", loginOk, loginFail);
+  
